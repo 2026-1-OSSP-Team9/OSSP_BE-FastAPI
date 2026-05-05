@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+pytrends
+requests
+apscheduler
+pydantic-settings
+pymysql
+cryptography
+# 테스트
+pytest
+httpx
+pytest-mock

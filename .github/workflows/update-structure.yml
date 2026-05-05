@@ -1,0 +1,41 @@
+name: Update Project Structure
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  update-structure:
+    # github-actions가 만든 commit이면 실행 안함
+    if: github.actor != 'github-actions'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate tree and update README
+        run: python scripts/generate_tree.py
+
+      - name: Commit changes if any
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          git add README.md
+
+          # 변경 없으면 commit 안 함
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "🤖 auto: update project structure"
+            git push
+          fi

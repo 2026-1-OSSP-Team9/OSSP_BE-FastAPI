@@ -5,15 +5,13 @@ EXCLUDE_FILES = {".DS_Store"}
 
 README_FILE = "README.md"
 
-
 def generate_tree(startpath: str) -> str:
     tree_lines = []
 
     def _tree(dir_path: str, prefix: str = ""):
-        entries = sorted([
-            e for e in os.listdir(dir_path)
-            if e not in EXCLUDE_DIRS and e not in EXCLUDE_FILES
-        ])
+        entries = sorted(
+            [e for e in os.listdir(dir_path) if not e.startswith(".")]
+        )
 
         for index, entry in enumerate(entries):
             path = os.path.join(dir_path, entry)
@@ -30,7 +28,6 @@ def generate_tree(startpath: str) -> str:
     _tree(startpath)
 
     return "\n".join(tree_lines)
-
 
 def update_readme(tree_str: str):
     if not os.path.exists(README_FILE):
@@ -50,9 +47,13 @@ def update_readme(tree_str: str):
     before = content.split(start_tag)[0]
     after = content.split(end_tag)[1]
 
-    new_section = f"""{start_tag}
-{tree_str}
-{end_tag}"""
+    new_section = (
+        f"{start_tag}\n"
+        "```bash\n"
+        f"{tree_str}\n"
+        "```\n"
+        f"{end_tag}"
+    )
 
     new_content = before + new_section + after
 

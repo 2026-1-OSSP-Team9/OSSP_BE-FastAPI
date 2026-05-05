@@ -8,4 +8,27 @@
 
 # 구조
 <!-- START_TREE -->
+app
+├── api
+│   └── v1
+│       └── routers.py
+├── core
+│   ├── config.py
+│   ├── logging.py
+│   └── security.py
+├── crud
+│   └── trend.py
+├── db
+│   ├── base.py
+│   └── session.py
+├── main.py
+├── models
+│   └── trend.py
+├── services
+│   ├── google_trends_scraper.py
+│   └── trend_service.py
+└── tests
+    ├── __init__.py
+    ├── test_api.py
+    └── test_trend_service.py
 <!-- END_TREE -->

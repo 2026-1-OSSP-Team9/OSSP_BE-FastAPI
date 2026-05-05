@@ -212,7 +212,9 @@ Temporary Items
 [Ll]ib
 [Ll]ib64
 [Ll]ocal
-[Ss]cripts
+venv/Scripts/
+ENV/Scripts/
+env/Scripts/
 pyvenv.cfg
 pip-selfcheck.json
 

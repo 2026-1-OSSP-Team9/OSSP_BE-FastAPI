@@ -8,6 +8,7 @@
 
 # 구조
 <!-- START_TREE -->
+```bash
 app
 ├── api
 │   └── v1
@@ -31,4 +32,5 @@ app
     ├── __init__.py
     ├── test_api.py
     └── test_trend_service.py
+```
 <!-- END_TREE -->
